@@ -20,3 +20,20 @@ Create a Python generator that streams rows from an SQL database (`user_data` ta
 ```python
 user='your_mysql_user'
 password='your_mysql_password'
+
+# Python Generators - Batch Processing
+
+## Objective
+Create a generator to fetch rows from the `user_data` table in batches and process each batch to filter users over the age of 25.
+
+## Files
+- `1-batch_processing.py` - contains two functions:
+  - `stream_users_in_batches(batch_size)` - fetches users in batches
+  - `batch_processing(batch_size)` - processes each batch and prints users over age 25
+- `2-main.py` - tests the batch processing generator
+
+## Usage
+1. Ensure MySQL is running and the database `ALX_prodev` exists with the `user_data` table populated.
+2. Run the test file:
+```bash
+python3 2-main.py
