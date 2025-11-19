@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
+"""Unit tests for utils.py functions: access_nested_map, get_json, memoize.
+"""
+
 import unittest
 from utils import access_nested_map, get_json, memoize
 from parameterized import parameterized
 from unittest.mock import patch, Mock
 
 class TestAccessNestedMap(unittest.TestCase):
+    """Test the access_nested_map function."""
 
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
@@ -26,6 +30,7 @@ class TestAccessNestedMap(unittest.TestCase):
         self.assertEqual(context.exception.args[0], key)
 
 class TestGetJson(unittest.TestCase):
+    """Test the get_json function with mocked requests."""
 
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
@@ -41,6 +46,7 @@ class TestGetJson(unittest.TestCase):
             mock_get.assert_called_once_with(url)
 
 class TestMemoize(unittest.TestCase):
+    """Test the memoize decorator caches method results."""
     def test_memoize(self):
         class TestClass:
             def a_method(self):
@@ -52,11 +58,11 @@ class TestMemoize(unittest.TestCase):
         
         obj = TestClass()
 
-        with patch.object(obj, "a_method", return_value = 42) as mock_method:
+        with patch.object(obj, "a_method", return_value=42) as mock_method:
             result1 = obj.a_property
             result2 = obj.a_property
-            assert result1 == 42
-            assert result2 == 42
+            
+            self.assertEqual(result1, 42)
+            self.assertEqual(result2, 42)
 
             mock_method.assert_called_once()
-
