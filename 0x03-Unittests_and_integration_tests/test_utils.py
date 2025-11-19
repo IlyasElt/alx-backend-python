@@ -40,7 +40,8 @@ class TestGetJson(unittest.TestCase):
         ("http://holberton.io", {"payload": False}),
     ])
     def test_get_json(self, url, payload):
-        """Test get_json returns the correct payload and calls requests.get once."""
+        """Test get_json returns the correct payload and calls 
+        requests.get once."""
         with patch("requests.get") as mock_get:
             mock_get.return_value.json.return_value = payload
 
@@ -54,7 +55,8 @@ class TestMemoize(unittest.TestCase):
     """Test the memoize decorator caches method results."""
 
     def test_memoize(self):
-        """Test that memoize caches the result and calls the method only once."""
+        """Test that memoize caches the result and calls 
+        the method only once."""
 
         class TestClass:
             def a_method(self):
