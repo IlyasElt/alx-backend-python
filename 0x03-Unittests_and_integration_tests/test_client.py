@@ -38,14 +38,16 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @patch("client.get_json")
     def test_public_repos(self, mock_get_json):
-        """Test public_repos returns expected repo names and calls get_json once."""
+        """Test public_repos returns expected repo names
+        and calls get_json once."""
         mock_get_json.return_value = [
             {"name": "repo1"},
             {"name": "repo2"},
         ]
         client = GithubOrgClient("test_org")
         with patch(
-            "client.GithubOrgClient._public_repos_url", new_callable=PropertyMock
+            "client.GithubOrgClient._public_repos_url",
+            new_callable=PropertyMock
         ) as mock_url:
             mock_url.return_value = "http://fake.url"
             result = client.public_repos()
